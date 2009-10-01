@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <Module>
   <ModulePrefs title="Hello Wave">
-    <Require feature="wave" /> 
+    <Require feature="rpc"/>
   </ModulePrefs>
   <Content type="html">
-    <![CDATA[     
-       Hello, Wave!
+    <![CDATA[
+    <script type="text/javascript"
+      src="http://wave-api.appspot.com/public/wave.js"></script>
+      Hello, Wave!
     ]]>
   </Content>
 </Module>
