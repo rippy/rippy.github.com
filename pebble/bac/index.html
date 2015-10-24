@@ -25,7 +25,7 @@
         }
 
         window.onload = function () {
-            var options = getQueryParam("options", "{}");
+            var options = getQueryParam("options", '{"gender":"Male","weight":"350"}');
             console.log("options", options);
             options = JSON.parse(options);
             document.forms[0].gender.value = options.gender;
