@@ -1,0 +1,16 @@
+
+http://bower.io/
+http://code.tutsplus.com/tutorials/meet-bower-a-package-manager-for-the-web--net-27774
+
+$ bower list
+bower check-new     Checking for new versions of the project dependencies...
+html /Users/jrippy/code/GitHub/pebblejs/src/html
+└── Slate#0.0.3 extraneous
+
+$ bower update
+
+
+Start server
+
+python -mSimpleHTTPServer
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0" name="viewport">
+    <title></title>
+    <link rel="stylesheet" href="bower_components/Slate/dist/css/slate.css">
+    <script>
+        // Get query variables
+        function getQueryParam(variable, defaultValue) {
+            // Find all URL parameters
+            var query = location.search.substring(1);
+            console.log("query", query);
+            var vars = query.split('&');
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split('=');
+
+                // If the query variable parameter is found, decode it to use and return it for use
+                if (pair[0] === variable) {
+                    return decodeURIComponent(pair[1]);
+                }
+            }
+            return defaultValue || false;
+        }
+
+        window.onload = function () {
+            var options = getQueryParam("options", "{}");
+            console.log("options", options);
+            options = JSON.parse(options);
+            document.forms[0].gender.value = options.gender;
+            document.forms[0].weight.value = options.weight;
+            document.forms[0].weightText.value = options.weight;
+        }
+
+    </script>
+</head>
+
+<body>
+    <form id="main-form">
+        <div class="item-container">
+            <div class="item-container-content">
+                <div class="item">
+                    We need a few values to estimate your BAC.
+                </div>
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="item-container-header">Info</div>
+            <div class="item-container-content">
+                <label class="item">
+                    Gender
+                    <select id='gender' name="select-1" dir='rtl' class="item-select">
+                        <option class="item-select-option" selected>Male</option>
+                        <option class="item-select-option">Female</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+
+    <!--
+      |  See also: http://html5tutorial.info/html5-range.php
+      -->
+        <div class="item-container">
+            <div class="item-container-header">Weight (in lbs)</div>
+            <div class="item-container-content">
+                <label class="item">
+                    <input id='weight' type="range" class="item-slider" name="slider-1" min="80" max="400" value="235">
+                    <div class="item-input-wrapper item-slider-text">
+                        <input id='weightText' type="text" class="item-input" name="slider-1" value="235">
+                    </div>
+                </label>
+            </div>
+        </div>
+
+        <div class="item-container">
+            <div class="button-container">
+                <input type="button" class="item-button" value="SAVE" id="saveButton">
+            </div>
+        </div>
+    </form>
+
+    <script type="text/javascript" src="bower_components/Slate/dist/js/slate.js"></script>
+
+    <script>
+        function doSave() {
+            // Set the return URL depending on the runtime environment; emulator vs phone
+            var return_to = getQueryParam('return_to', 'pebblejs://close#');
+
+            var options = {
+                'gender': document.forms[0].gender.value,
+                'weight': document.forms[0].weight.value
+            };
+
+            console.log('saving... ', options);
+
+            document.location = return_to + encodeURIComponent(JSON.stringify(options));
+        }
+        var saveButton = document.getElementById('saveButton');
+        saveButton.addEventListener('click', doSave);
+    </script>
+</body>
+
+</html>
