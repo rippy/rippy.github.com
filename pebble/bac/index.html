@@ -25,12 +25,15 @@
         }
 
         window.onload = function () {
-            var options = getQueryParam("options", '{"gender":"Male","weight":"350"}');
+            var options = getQueryParam("options", '{"gender":"Male","weight":"235","gender1":"Male","weight1":"150"}');
             console.log("options", options);
             options = JSON.parse(options);
             document.forms[0].gender.value = options.gender;
             document.forms[0].weight.value = options.weight;
             document.forms[0].weightText.value = options.weight;
+            document.forms[0].gender1.value = options.gender1;
+            document.forms[0].weight1.value = options.weight1;
+            document.forms[0].weight1Text.value = options.weight1;
         }
 
     </script>
@@ -75,6 +78,37 @@
             </div>
         </div>
 
+        <!--<div class="item-container">&nbsp;</div>-->
+
+        <div class="item-container">
+            <div class="item-container-header">Info</div>
+            <div class="item-container-content">
+                <label class="item">
+                    Gender
+                    <select id='gender1' name="select-1" dir='rtl' class="item-select">
+                        <option class="item-select-option">Male</option>
+                        <option class="item-select-option" selected>Female</option>
+                    </select>
+                </label>
+            </div>
+        </div>
+
+
+    <!--
+      |  See also: http://html5tutorial.info/html5-range.php
+      -->
+        <div class="item-container">
+            <div class="item-container-header">Weight (in lbs)</div>
+            <div class="item-container-content">
+                <label class="item">
+                    <input id='weight1' type="range" class="item-slider" name="slider-2" min="80" max="400" value="150">
+                    <div class="item-input-wrapper item-slider-text">
+                        <input id='weight1Text' type="text" class="item-input" name="slider-2" value="150">
+                    </div>
+                </label>
+            </div>
+        </div>
+
         <div class="item-container">
             <div class="button-container">
                 <input type="button" class="item-button" value="SAVE" id="saveButton">
@@ -91,7 +125,9 @@
 
             var options = {
                 'gender': document.forms[0].gender.value,
-                'weight': document.forms[0].weight.value
+                'weight': document.forms[0].weight.value,
+                'gender1': document.forms[0].gender1.value,
+                'weight1': document.forms[0].weight1.value
             };
 
             console.log('saving... ', options);
